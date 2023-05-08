@@ -1,0 +1,22 @@
+# apply sub-block upf to the AES coprocessor
+load_upf subblock.upf -scope picosocInst_aes_coprocessor 
+# TODO: correct the name of ROCOUNT
+#load_upf subblock.upf -scope ROCOUNT
+create_supply_port VDD1
+create_supply_port VDD2
+create_supply_port VSS1
+create_supply_port VSS2
+create_power_domain PD
+create_supply_net VN1 -domain PD
+connect_supply_net VN1 -ports {VDD1}
+create_supply_net GN1 -domain PD
+connect_supply_net GN1 -ports {VSS1}
+create_supply_net VN2 -domain PD
+connect_supply_net VN2 -ports {VDD2 picosocInst_aes_coprocessor/VN}
+#connect_supply_net VN2 -ports {VDD2 picosocInst_aes_coprocessor/VN ROCOUNT/VN}
+create_supply_net GN2 -domain PD
+connect_supply_net GN2 -ports {VSS2 picosocInst_aes_coprocessor/GN}
+#connect_supply_net GN2 -ports {VSS2 picosocInst_aes_coprocessor/GN ROCOUNT/GN}
+set_domain_supply_net PD -primary_power_net VN1 -primary_ground_net GN1
+
+create_voltage_area -power_domains picosocInst_aes_coprocessor/PD -region {{240 2200} {1300 2800}} -power VN2 -ground GN2 -name "AES_voltage"

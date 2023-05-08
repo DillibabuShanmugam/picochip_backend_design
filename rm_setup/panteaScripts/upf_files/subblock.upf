@@ -1,0 +1,8 @@
+create_power_domain PD2
+create_supply_net VN -domain PD2
+create_supply_net GN -domain PD2
+set_domain_supply_net PD2 -primary_power_net VN -primary_ground_net GN
+create_supply_port VN 
+create_supply_port GN 
+connect_supply_net VN -ports {VN}
+connect_supply_net GN -ports {GN}

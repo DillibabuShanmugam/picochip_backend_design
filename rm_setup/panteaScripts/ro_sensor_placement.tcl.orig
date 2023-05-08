@@ -1,0 +1,108 @@
+set VERT_EMSENSOR_HEIGHT 120.64
+set VERT_EMSENSOR_WIDTH 20; # Earlier 24
+
+set HOR_EMSENSOR_HEIGHT 20.16
+set HOR_EMSENSOR_WIDTH 220.0
+
+set SQ_EMSENSOR_WIDTH 100.6
+set SQ_EMSENSOR_HEIGHT 100.6 
+
+
+# middle:
+set ro_sensor_ll_coord(0) [list 245 2145]
+set ro_sensor_ll_coord(1) [list 745 2145]
+set ro_sensor_ll_coord(2) [list 1245 2145]
+set ro_sensor_ll_coord(3) [list 1745 2145]
+set ro_sensor_ll_coord(4) [list 2245 2145]
+#for {set i 1} {$i < 5} {incr i} {
+#    set ro_sensor_ll_coord($i) [list [expr {[lindex $ro_sensor_ll_coord(0) 0]+ $i*500}] [lindex $ro_sensor_ll_coord(0) 1]]
+#}
+set ro_sensor_ll_coord(5) [list 445 2545]
+set ro_sensor_ll_coord(6) [list 945 2545]
+set ro_sensor_ll_coord(7) [list 1445 2545]
+set ro_sensor_ll_coord(8) [list 1945 2545]
+set ro_sensor_ll_coord(9) [list 2445 2545]
+#for {set i 1} {$i < 5} {incr i} {
+#    set ro_sensor_ll_coord([expr {$i+5}]) [list [expr {[lindex $ro_sensor_ll_coord(5) 0]+ $i*500}] [lindex $ro_sensor_ll_coord(5) 1]]
+#}
+set ro_sensor_ll_coord(10) [list 345 2345]
+set ro_sensor_ll_coord(11) [list 745 2345]
+set ro_sensor_ll_coord(12) [list 1145 2345]
+set ro_sensor_ll_coord(13) [list 1545 2345]
+set ro_sensor_ll_coord(14) [list 1945 2345]
+set ro_sensor_ll_coord(15) [list 2345 2345]
+#for {set i 1} {$i < 6} {incr i} {
+#    set ro_sensor_ll_coord([expr {$i+10}]) [list [expr {[lindex $ro_sensor_ll_coord(10) 0]+ $i*400}] [lindex $ro_sensor_ll_coord(10) 1]]
+#}
+
+# bottom:
+set ro_sensor_ll_coord(16) [list 1145 245]
+set ro_sensor_ll_coord(17) [list 1545 245]
+set ro_sensor_ll_coord(18) [list 1345 645]
+set ro_sensor_ll_coord(19) [list 1145 1045]
+set ro_sensor_ll_coord(20) [list 1545 1045]
+set ro_sensor_ll_coord(21) [list 1345 1445]
+set ro_sensor_ll_coord(22) [list 1145 1845]
+set ro_sensor_ll_coord(23) [list 1545 1845]
+
+# top:
+set ro_sensor_ll_coord(24) [list 1145 2845]
+set ro_sensor_ll_coord(25) [list 1545 2845]
+set ro_sensor_ll_coord(26) [list 1345 3245]
+set ro_sensor_ll_coord(27) [list 1145 3645]
+set ro_sensor_ll_coord(28) [list 1545 3645]
+set ro_sensor_ll_coord(29) [list 1345 4045]
+set ro_sensor_ll_coord(30) [list 1145 4445]
+set ro_sensor_ll_coord(31) [list 1545 4445]
+
+#for {set i 0} {$i < 26} {incr i} {
+#    set ro_sensor_ur_coord($i) [list [expr {[lindex $ro_sensor_ll_coord($i) 0]+$VERT_EMSENSOR_WIDTH}] [expr {[lindex $ro_sensor_ll_coord($i) 1]+$VERT_EMSENSOR_HEIGHT}]]
+#}
+#
+#for {set i 26} {$i < 29} {incr i} {
+#   set ro_sensor_ur_coord($i) [list [expr {[lindex $ro_sensor_ll_coord($i) 0]+$HOR_EMSENSOR_WIDTH}] [expr {[lindex $ro_sensor_ll_coord($i) 1]+$HOR_EMSENSOR_HEIGHT}]]
+#}
+#
+
+set tri_ro_index_list "0  2  4 11 13 15  5  7  9 23 19 18 17 24 27 31"
+set mux_ro_index_list "1  3 10 12 14  6  8 22 21 20 16 25 26 28 29 30"
+
+for {set i 0} {$i < 32} {incr i} {
+    set ro_sensor_ur_coord($i) [list [expr {[lindex $ro_sensor_ll_coord($i) 0]+$SQ_EMSENSOR_WIDTH}] [expr {[lindex $ro_sensor_ll_coord($i) 1]+$SQ_EMSENSOR_HEIGHT}]]
+}
+
+set i 0
+foreach tri_ro_index $tri_ro_index_list {
+    set xll [lindex $ro_sensor_ll_coord(${tri_ro_index}) 0]
+    set yll [lindex $ro_sensor_ll_coord(${tri_ro_index}) 1]
+    set xur [lindex $ro_sensor_ur_coord(${tri_ro_index}) 0]
+    set yur [lindex $ro_sensor_ur_coord(${tri_ro_index}) 1]
+    set coord "{{$xll $yll} {$xur $yur}}"
+
+    # Remove bound if it already exists
+    if {[sizeof_collection [get_bounds bound_ro_sensor${tri_ro_index}]] != 0} {
+        puts "Removing existing bound bound_ro_sensor${tri_ro_index}"
+        remove_bounds [get_bounds bound_ro_sensor${tri_ro_index}]
+    }
+    create_bound -name bound_ro_sensor${tri_ro_index} -boundary $coord -exclusive [get_cell picosocInst_ro_countermeasure_tri_ro_multi_inst_genblk1_${i}__myro*]
+    set i [expr $i+1]
+}
+
+
+set i 0
+foreach mux_ro_index $mux_ro_index_list {
+    set xll [lindex $ro_sensor_ll_coord(${mux_ro_index}) 0]
+    set yll [lindex $ro_sensor_ll_coord(${mux_ro_index}) 1]
+    set xur [lindex $ro_sensor_ur_coord(${mux_ro_index}) 0]
+    set yur [lindex $ro_sensor_ur_coord(${mux_ro_index}) 1]
+    set coord "{{$xll $yll} {$xur $yur}}"
+
+    # Remove bound if it already exists
+    if {[sizeof_collection [get_bounds bound_ro_sensor${mux_ro_index}]] != 0} {
+        puts "Removing existing bound bound_ro_sensor${mux_ro_index}"
+        remove_bounds [get_bounds bound_ro_sensor${mux_ro_index}]
+    }
+    create_bound -name bound_ro_sensor${mux_ro_index} -boundary $coord -exclusive [get_cell picosocInst_ro_countermeasure_mux_ro_multi_inst_genblk1_${i}__myro*]
+    set i [expr $i+1]
+}
+

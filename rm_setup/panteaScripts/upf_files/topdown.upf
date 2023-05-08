@@ -1,0 +1,22 @@
+if {$MV_AES} {
+    create_power_domain PD_AES -elements {picosocInst_aes_coprocessor}
+    create_power_domain PD_TOP 
+
+    create_supply_port VDD1
+    create_supply_port VDD2
+    create_supply_port VSS1
+    create_supply_port VSS2
+
+    create_supply_net VN1 -domain PD_TOP
+    connect_supply_net VN1 -ports {VDD1}
+    create_supply_net GN1 -domain PD_TOP
+    connect_supply_net GN1 -ports {VSS1}
+
+    create_supply_net VN2 -domain PD_AES
+    connect_supply_net VN2 -ports {VDD2}
+    create_supply_net GN2 -domain PD_AES
+    connect_supply_net GN2 -ports {VSS2}
+
+    set_domain_supply_net PD_TOP -primary_power_net VN1 -primary_ground_net GN1
+    set_domain_supply_net PD_AES -primary_power_net VN2 -primary_ground_net GN2
+}
