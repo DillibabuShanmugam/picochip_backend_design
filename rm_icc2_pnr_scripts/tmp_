@@ -1,0 +1,10 @@
+
+set ndm_src_dir "/home/pantea/newtf-libpreps/ndm_newtf/"
+
+set PARASITIC_FILE "/home/pantea/018G_6lm4X1U_40KUTM_Syn/tluplus/extracted/typical/cm018g_1p6m_4x1u_mim5_40k_typical.tluplus"
+
+set REFERENCE_LIBRARY 		[list $ndm_src_dir/std_cell/tcb018gbwp7t.ndm $ndm_src_dir/std_cell/std_cell_lib_frame.ndm $ndm_src_dir/$io_ndm_dir/$pad_lib.ndm $ndm_src_dir/$io_ndm_dir/io_cell_lib_frame.ndm $ndm_src_dir/mem_cell/aspulsgfs1p8192x8cm16sw0_lib.ndm $ndm_src_dir/mem_cell/mem_cell_lib_frame.ndm /home/pantea/ndm_libs/aio_cell/tpa018nv.ndm /home/pantea/ndm_libs/aio_cell/aio_cell_lib_frame.ndm /home/pantea/ndm_libs/trng_ro_cell/ro_cell_lib_frame.ndm]	;# Required; a list of reference libraries for the design library.
+
+set TECH_FILE 			"/home/pantea/018G_6lm4X1U_40KUTM_Syn/PR_tech/Synopsys/TechFile/tsmc018_6lm4x1u_modified.tf" 	;# A technology file; TECH_FILE and TECH_LIB are mutually exclusive ways to specify technology information; 
+
+set memory_path "/home/pantea/RAM_byte/sram8kx8/compout/"
