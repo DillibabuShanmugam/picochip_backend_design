@@ -1,0 +1,15 @@
+*drcRulesFile: /home/dshanmugam/picochip_design/icc2_run/calibre_drc/ant.drc
+*drcRunDir: /home/dshanmugam/picochip_design/icc2_run
+*drcLayoutPaths: /home/dshanmugam/picochip_design/icc2_run/outputs_icc2/picochip_test_merged.gds
+*drcLayoutPrimary: picochip
+*drcLayoutLibrary: picochip_tcb018gbwp7t_270a
+*drcLayoutView: design
+*drcLayoutGetFromViewer: 1
+*drcResultsFile: picochip.drc.results
+*drcSummaryFile: picochip.drc.summary
+*cmnShowOptions: 1
+*cmnUsePrecision: 1
+*cmnPrecision: 10000
+*cmnFDILayoutLibrary: picochip_tcb018gbwp7t_270a
+*cmnFDILayoutView: design
+*cmnFDIDEFLayoutPath: picochip.def

@@ -1,0 +1,28 @@
+//
+//  Rule file generated on Mon May 08 04:51:45 EDT 2023
+//     by Calibre Interactive - DRC (v2019.2_26.18)
+//
+//      *** PLEASE DO NOT MODIFY THIS FILE ***
+//
+//
+
+PRECISION 10000
+LAYOUT PATH  "/home/dshanmugam/picochip_design/icc2_run/write_data_dir/picochip/picochip.icc2.lvs.v.gz"
+LAYOUT PRIMARY "picochip"
+LAYOUT SYSTEM GDSII
+
+DRC RESULTS DATABASE "picochip.drc.results" GDSII 
+DRC MAXIMUM RESULTS 1000
+DRC MAXIMUM VERTEX 4096
+
+DRC CELL NAME YES CELL SPACE XFORM
+DRC SUMMARY REPORT "picochip.drc.summary" REPLACE 
+
+VIRTUAL CONNECT COLON NO
+VIRTUAL CONNECT REPORT NO
+
+DRC ICSTATION YES
+
+
+INCLUDE "/home/dshanmugam/picochip_design/icc2_run/calibre_drc/ant.drc"
+
