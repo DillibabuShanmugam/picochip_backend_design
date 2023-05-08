@@ -1,0 +1,23 @@
+//  v2lvs v2019.2_26.18    Tue May 7 10:56:43 PDT 2019
+//
+//  Copyright (c) 1992, 1993 Regents of the University of California
+//         All rights reserved.
+//
+//        Copyright Mentor Graphics Corporation 1996-2019
+//                       All Rights Reserved.
+//   THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+//      WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION
+//        OR ITS LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+//
+//  The registered trademark Linux is used pursuant to a sublicense from LMI, the
+//  exclusive licensee of Linus Torvalds, owner of the mark on a world-wide basis.
+//
+//  Mentor Graphics software executing under x86-64 Linux
+//
+Running /opt/cadence/CALIBRE/pkgs/icv/pvt/v2lvs -v calibre_lvs/picochip_postlayout_lvs.v -l /opt/libraries/TSMCHOME/digital/Front_End/verilog/tcb018gbwp7t_270a/tcb018gbwp7t.v -l /opt/libraries/TSMCHOME/digital/Front_End/verilog/tpz973gv_270a/tpz973gv.v -l /home/pantea/RAM_byte/sram8kx8/compout/views/aspulsgfs1p8192x8cm16sw0/Worst/aspulsgfs1p8192x8cm16sw0_rtl.v -s /opt/libraries/TSMCHOME/digital/Back_End/spice/tcb018gbwp7t_270a/tcb018gbwp7t_270a.spi -s /home/pantea/spice_tsmc/tpz973gv_270a/tpz973gv_1_2.spi -s /home/pantea/RAM_byte/sram8kx8/compout/views/aspulsgfs1p8192x8cm16sw0/aspulsgfs1p8192x8cm16sw0.cir -s0 VSS -s1 VDD -so calibre_lvs/pad_pg_override.txt -o calibre_lvs/picochip_lvs.spi
+
+Info: Reading Signal Overrides File ...
+Error: Unable to open file calibre_lvs/pad_pg_override.txt:No such file or directory
+Error: Signal Override File parser failed for file calibre_lvs/pad_pg_override.txt
+
+CPU TIME = 0  REAL TIME = 0  MALLOC = 4/4/4

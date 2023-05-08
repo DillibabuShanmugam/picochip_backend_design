@@ -1,0 +1,9 @@
+// Global override for vddpst and vsspst
+picochip vdd3left supply1=VD33
+picochip vdd3top supply1=VD33
+picochip vdd3right supply1=VD33
+picochip vdd3bottom supply1=VD33
+picochip vss3left supply0=VSSPST
+picochip vss3top supply0=VSSPST
+picochip vss3right supply0=VSSPST
+picochip vss3bottom supply0=VSSPST

@@ -1,0 +1,22 @@
+* preparing the spice:
+	1. write the verilog netlist without fill cells, pad fillers, tap cells, corner pads, bond pads (or any other part of the chip without a .subckt in spice file)
+	2. generate the spice netlist using the v2lvs tool in shell command line:
+v2lvs -v calibre_lvs/picochip_postlayout_lvs.v -l /opt/libraries/TSMCHOME/digital/Front_End/verilog/tcb018gbwp7t_270a/tcb018gbwp7t.v -l /opt/libraries/TSMCHOME/digital/Front_End/verilog/tpz973gv_270a/tpz973gv.v -l /home/pantea/RAM_byte/sram8kx8/compout/views/aspulsgfs1p8192x8cm16sw0/Worst/aspulsgfs1p8192x8cm16sw0_rtl.v -s /opt/libraries/TSMCHOME/digital/Back_End/spice/tcb018gbwp7t_270a/tcb018gbwp7t_270a.spi -s /home/pantea/spice_tsmc/tpz973gv_270a/tpz973gv_1_2.spi -s /home/pantea/RAM_byte/sram8kx8/compout/views/aspulsgfs1p8192x8cm16sw0/aspulsgfs1p8192x8cm16sw0.cir -s0 VSS -s1 VDD -so calibre_lvs/pad_pg_override.txt -o calibre_lvs/picochip_lvs.spi
+
+** manual change:
+	the output spice netlist might need reordering of INCLUDEd spice files (the RAM spice file comes after other spice files so that its header wouldn't applly to others)
+
+* preparing the gds:
+	1. save the gds file in icc2
+	2. open the gds file in virtuoso and add port names as texts on metal 5 pin on bond pads
+	3. export the gds with these options:
+		a. replace < and > with [ and ]
+		b. pin attribute some number other than zero (e.g. 127)
+
+
+* running the lvs: 
+	1. adjust the lvs rule file
+	2. run LVS:
+		calibre -lvs -hier calibre_lvs/calibre.lvs	
+
+
